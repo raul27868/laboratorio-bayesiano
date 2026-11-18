@@ -24,10 +24,13 @@ Modelo: una probabilidad desconocida θ, priori Beta(α,β), datos binomiales co
 - [x] Pruebas de referencia para n = 10, 100 y 1000; comprobación de normalización y casos límite.
 
 ### Fase 2 — v0.3.0: exploración
-- [ ] Controles de α, β, n y x accesibles con teclado.
-- [ ] Gráficos de priori y posterior con escalas adecuadas; no inducir a errores por autoescala.
-- [ ] Valores numéricos e interpretación textual de los resultados.
-- [ ] Comparación simultánea de escenarios y opción de reiniciar.
+- [x] Controles de α, β, n y x accesibles con teclado.
+- [x] Gráficos de priori y posterior con escalas adecuadas; no inducir a errores por autoescala.
+- [x] Valores numéricos e interpretación textual de los resultados.
+- [x] Comparación simultánea de escenarios y opción de reiniciar.
+
+
+**Estado:** implementada; pendiente de validación manual del usuario en su navegador.
 
 ### Fase 3 — v0.4.0: actividad guiada
 - [ ] Predicción inicial antes de revelar resultados.

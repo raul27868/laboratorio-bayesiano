@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#12243a">
   <title>Laboratorio Bayesiano | ¿Más datos significan cambiar de opinión?</title>
   <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" defer></script>
   <script type="module" src="./js/main.js"></script>
 </head>
 <body>
@@ -16,7 +17,7 @@
       <a class="brand" href="./" aria-label="Laboratorio Bayesiano, inicio">
         <span class="brand-symbol" aria-hidden="true">β</span><span>Laboratorio <strong>Bayesiano</strong></span>
       </a>
-      <span class="version" aria-label="Versión 0.1.0">v0.2.0</span>
+      <span class="version" aria-label="Versión 0.3.0">v0.3.0</span>
     </div>
   </header>
   <main id="contenido">
@@ -24,7 +25,7 @@
       <p class="eyebrow">Estadística bayesiana · Modelo Beta-Binomial</p>
       <h1 id="titulo">¿Más datos significan <em>cambiar de opinión?</em></h1>
       <p class="lead">Aprende a distinguir entre cambiar una estimación y ganar confianza en ella. Formula una predicción, contrástala con los datos y explica qué has descubierto.</p>
-      <div class="status" role="status"><span class="status-dot" aria-hidden="true"></span> Motor matemático listo · Fase 1</div>
+      <div class="status" role="status"><span class="status-dot" aria-hidden="true"></span> Exploración libre disponible · Fase 2</div>
     </section>
     <section class="container section" aria-labelledby="recorrido">
       <h2 id="recorrido">El recorrido de aprendizaje</h2>
@@ -39,8 +40,64 @@
     <section class="container section" aria-labelledby="modos">
       <h2 id="modos">Elige cómo aprender</h2>
       <div class="modes">
-        <article class="mode"><span class="mode-label">Modo 1</span><h3>Exploración libre</h3><p>Modifica parámetros, compara distribuciones e investiga tus propias preguntas.</p><span class="coming">Disponible en una próxima fase</span></article>
+        <article class="mode"><span class="mode-label">Modo 1</span><h3>Exploración libre</h3><p>Modifica parámetros, compara distribuciones e investiga tus propias preguntas.</p><a class="mode-action" href="#laboratorio">Abrir laboratorio ↓</a></article>
         <article class="mode"><span class="mode-label">Modo 2</span><h3>Actividad guiada</h3><p>Realiza una secuencia de predicción, experimentación, explicación y evaluación.</p><span class="coming">Disponible en una próxima fase</span></article>
+      </div>
+    </section>
+
+    <section class="container section lab-section" id="laboratorio" aria-labelledby="lab-title">
+      <p class="eyebrow">Exploración libre · Versión 0.3.0</p>
+      <h2 id="lab-title">Experimenta con la actualización bayesiana</h2>
+      <p class="section-intro">Modifica la priori y las observaciones. Observa cómo cambia tu estimación de θ y la incertidumbre que la acompaña.</p>
+      <div class="lab-grid">
+        <form id="controls" class="control-panel" aria-label="Parámetros del experimento">
+          <h3>Parámetros</h3>
+          <fieldset>
+            <legend>Distribución a priori</legend>
+            <label for="alpha">α (alfa)</label>
+            <input id="alpha" name="alpha" type="number" min="0.1" max="100" step="0.1" value="2">
+            <label for="beta">β (beta)</label>
+            <input id="beta" name="beta" type="number" min="0.1" max="100" step="0.1" value="2">
+          </fieldset>
+          <fieldset>
+            <legend>Datos observados</legend>
+            <label for="n">Número de lanzamientos (n)</label>
+            <input id="n" name="n" type="number" min="0" max="1000" step="1" value="10">
+            <label for="successes">Número de caras (x)</label>
+            <input id="successes" name="successes" type="number" min="0" max="10" step="1" value="7">
+          </fieldset>
+          <button type="button" id="reset-controls" class="reset-button">Restablecer parámetros</button>
+          <p id="control-error" role="alert" class="field-error"></p>
+        </form>
+        <div class="chart-panel">
+          <h3>De la priori a la posterior</h3>
+          <p class="chart-help">Ambas densidades se muestran en un mismo sistema de ejes y con la misma escala vertical.</p>
+          <div id="main-chart" class="plot" role="img" aria-label="Gráfico dinámico de las densidades Beta a priori y a posteriori; consulta también la tabla de valores inferior."></div>
+          <div class="stats-grid" aria-label="Estadísticos del experimento">
+            <div class="stat"><small>Distribución a priori</small><strong id="prior-params">Beta(2, 2)</strong><span>Media: <b id="prior-mean">0,5000</b></span><span>Desv. típica: <b id="prior-sd">0,2236</b></span></div>
+            <div class="stat"><small>Distribución a posteriori</small><strong id="posterior-params">Beta(9, 5)</strong><span>Media: <b id="posterior-mean">0,6429</b></span><span>Desv. típica: <b id="posterior-sd">0,1237</b></span></div>
+          </div>
+          <p class="rate">Frecuencia observada: <strong id="observed-rate">70,0000 %</strong></p>
+          <p id="interpretation" class="interpretation" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="comparison-section">
+        <h3>Comparar tres tamaños muestrales</h3>
+        <p>Misma priori Beta(2,2) y 70 % de caras en cada experimento. Activa o desactiva curvas para compararlas sin cambiar el experimento principal.</p>
+        <div class="comparison-filters" role="group" aria-label="Distribuciones a comparar">
+          <label><input type="checkbox" data-compare="10" checked> n=10 · 7 caras</label>
+          <label><input type="checkbox" data-compare="100" checked> n=100 · 70 caras</label>
+          <label><input type="checkbox" data-compare="1000" checked> n=1000 · 700 caras</label>
+        </div>
+        <div id="comparison-chart" class="plot" role="img" aria-label="Comparación de tres densidades posteriores de 10, 100 y 1000 observaciones. La tabla siguiente proporciona sus estadísticos."></div>
+        <div class="table-scroll">
+          <table class="comparison-table">
+            <caption>Valores de referencia para una priori Beta(2,2)</caption>
+            <thead><tr><th scope="col">n</th><th scope="col">Caras</th><th scope="col">Posterior</th><th scope="col">Media</th><th scope="col">Desv. típica</th></tr></thead>
+            <tbody><tr><th scope="row">10</th><td>7</td><td>Beta(9,5)</td><td>0,6429</td><td>0,1237</td></tr><tr><th scope="row">100</th><td>70</td><td>Beta(72,32)</td><td>0,6923</td><td>0,0450</td></tr><tr><th scope="row">1000</th><td>700</td><td>Beta(702,302)</td><td>0,6992</td><td>0,0145</td></tr></tbody>
+          </table>
+        </div>
+        <p class="chart-help">Los gráficos se visualizan mediante Plotly.js, cargado desde un CDN. Necesitas conexión a Internet; los cálculos y las tablas no dependen de él.</p>
       </div>
     </section>
     <section class="container section question" aria-labelledby="reto">

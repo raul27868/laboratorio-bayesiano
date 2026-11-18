@@ -21,3 +21,11 @@ Documentar los prompts concretos de implementación y las correcciones que surja
 **Restricciones:** separar cálculos e interfaz, no usar factoriales directos para densidades, evaluar la densidad mediante logGamma y logBeta, contemplar los extremos del soporte y proporcionar pruebas automáticas.
 
 **Verificación:** pruebas unitarias de identidades de la función Gamma y Beta, Beta uniforme, casos conjugados, valores de media y desviación típica, normalización numérica y rechazo de entradas inválidas. En la primera ejecución se detectaron dos constantes de desviación típica escritas manualmente con errores; se recalcularon con la fórmula analítica y la batería superó las siete pruebas del módulo.
+
+## Fase 2 — interfaz de exploración
+
+**Encargo resumido:** conectar el motor matemático a controles de α, β, n y éxitos; representar en la misma escala priori y posterior; comparar 10, 100 y 1000 observaciones y mostrar los valores numéricos en una tabla.
+
+**Decisiones:** módulo de cálculo independiente de la interfaz; comprobar que éxitos ≤ n; permitir n=0; mostrar interpretación textual; conservar una comparación fija de referencia separada de los controles libres. Se usa Plotly.js mediante CDN; los valores matemáticos se obtienen del motor local.
+
+**Validación pendiente:** pruebas manuales de renderizado, teclado, estrechamiento de pantalla y conexión del navegador, además de pruebas automatizadas de lógica y trazas.
