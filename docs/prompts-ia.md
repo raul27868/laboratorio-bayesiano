@@ -29,3 +29,11 @@ Documentar los prompts concretos de implementación y las correcciones que surja
 **Decisiones:** módulo de cálculo independiente de la interfaz; comprobar que éxitos ≤ n; permitir n=0; mostrar interpretación textual; conservar una comparación fija de referencia separada de los controles libres. Se usa Plotly.js mediante CDN; los valores matemáticos se obtienen del motor local.
 
 **Validación pendiente:** pruebas manuales de renderizado, teclado, estrechamiento de pantalla y conexión del navegador, además de pruebas automatizadas de lógica y trazas.
+
+## Fase 3 — actividad guiada
+
+**Encargo:** implementar un recorrido secuenciado donde el alumno elige una predicción antes de revelar datos, descubre progresivamente las posteriores para n=10, 100 y 1000, compara las distribuciones y formula dos explicaciones.
+
+**Criterios didácticos y técnicos:** bloquear las gráficas y tablas de la actividad hasta registrar una predicción; impedir saltarse observaciones; mantener resultados visibles al interpretar; añadir pregunta de transferencia Beta(20,20); evitar calificaciones automáticas prematuras; permitir reiniciar y no enviar respuestas a servidores.
+
+**Comprobación:** batería automatizada para transición de estados, orden de experimentos, cálculo de las posteriores, condiciones para finalizar y ausencia de calificación. Validación de la interfaz y accesibilidad pendiente de revisión local en Firefox.

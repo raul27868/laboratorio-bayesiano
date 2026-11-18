@@ -6,7 +6,7 @@ Aplicación educativa interactiva para explorar la inferencia bayesiana, con esp
 
 ## Estado del proyecto
 
-**v0.3.0 — Fase 2: exploración libre.** Controles, gráficos de densidades y comparación de escenarios incorporados. Pendiente de confirmación mediante pruebas manuales en navegador antes de iniciar la Fase 3.
+**v0.4.0 — Fase 3: actividad guiada.** La exploración libre se mantiene; se incorpora una actividad secuenciada de predicción, tres observaciones y dos explicaciones escritas. Pendiente de validación manual. Las calificaciones y el feedback detallado corresponden a la Fase 4.
 
 ## Objetivos de aprendizaje
 
@@ -61,6 +61,7 @@ tests/structure.test.js
 tests/bayes.test.js
 tests/laboratory.test.js
 tests/charts.test.js
+tests/activity.test.js
 assets/infografia/.gitkeep
 docs/proyecto.md
 docs/decisiones-pedagogicas.md
@@ -103,3 +104,19 @@ Código bajo licencia MIT. Los futuros recursos gráficos o materiales educativo
 9. Comprobar navegación mediante teclado y ventana estrecha.
 
 **Nota:** los gráficos se descargan desde el CDN de Plotly; con conexión desactivada aparecerá una advertencia, pero las estadísticas se seguirán calculando.
+
+## Validación local de la Fase 3
+
+Ejecuta `git pull origin main`, `npm test` y `python3 -m http.server 8000`. Abre `http://localhost:8000`.
+
+1. La actividad guiada comienza mostrando la pregunta de predicción y **sin resultados** en su sección.
+2. No permite continuar sin seleccionar una respuesta. Tras seleccionarla queda registrada.
+3. Solo revela los casos n=10, n=100 y n=1000 en ese orden, con posterior Beta(9,5), Beta(72,32) y Beta(702,302).
+4. Las curvas se acumulan; al pasar a las preguntas abiertas, la tabla y el gráfico permanecen visibles.
+5. Dos respuestas de al menos 30 caracteres permiten finalizar; respuestas muy cortas no.
+6. Se muestran la predicción original y las dos respuestas sin calificarlas automáticamente.
+7. «Empezar de nuevo» borra el intento de la pantalla.
+8. El laboratorio de exploración libre conserva su funcionalidad y los controles de la Fase 2.
+9. Comprueba teclado, pantalla estrecha y visualización en Firefox.
+
+**Nota docente:** la exploración libre es accesible por separado. Para recoger predicciones genuinas, solicita a los estudiantes que comiencen en el modo guiado sin consultar previamente el modo libre. La Fase 4 añadirá opciones de presentación que reduzcan ese riesgo.

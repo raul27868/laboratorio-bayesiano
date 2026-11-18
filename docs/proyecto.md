@@ -30,13 +30,16 @@ Modelo: una probabilidad desconocida θ, priori Beta(α,β), datos binomiales co
 - [x] Comparación simultánea de escenarios y opción de reiniciar.
 
 
-**Estado:** implementada; pendiente de validación manual del usuario en su navegador.
+**Estado:** validación local comunicada por el usuario; todos los controles y escenarios revisados.
 
 ### Fase 3 — v0.4.0: actividad guiada
-- [ ] Predicción inicial antes de revelar resultados.
-- [ ] Experimentos de 10, 100 y 1000 observaciones con 70 % de éxitos.
-- [ ] Explicación escrita y contraste con la predicción.
-- [ ] Pregunta de transferencia para otra priori.
+- [x] Predicción inicial antes de revelar resultados.
+- [x] Experimentos de 10, 100 y 1000 observaciones con 70 % de éxitos.
+- [x] Explicación escrita y contraste con la predicción.
+- [x] Pregunta de transferencia para otra priori.
+
+
+**Estado:** implementada; pendiente de validación manual local.
 
 ### Fase 4 — v0.5.0: evaluación
 - [ ] Respuestas cerradas con feedback específico por error.
