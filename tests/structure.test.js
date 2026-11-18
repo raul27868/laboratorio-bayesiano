@@ -5,7 +5,7 @@ import { PROJECT_VERSION } from "../js/laboratory.js";
 import { BAYES_ENGINE_READY } from "../js/bayes.js";
 
 test("la estructura de la fase 4 declara la versión correcta", () => {
-  assert.equal(PROJECT_VERSION, "0.5.0);
+  assert.equal(PROJECT_VERSION, "0.5.0");
   assert.equal(BAYES_ENGINE_READY, true);
 });
 
