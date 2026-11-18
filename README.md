@@ -6,7 +6,7 @@ Aplicación educativa interactiva para explorar la inferencia bayesiana, con esp
 
 ## Estado del proyecto
 
-**v0.4.0 — Fase 3: actividad guiada.** La exploración libre se mantiene; se incorpora una actividad secuenciada de predicción, tres observaciones y dos explicaciones escritas. Pendiente de validación manual. Las calificaciones y el feedback detallado corresponden a la Fase 4.
+**v0.5.0 — Fase 4: evaluación formativa.** Preguntas cerradas corregidas con feedback diferido, rúbrica de 10 puntos para valoración docente de las abiertas, exportación JSON y guardado local opcional. Pendiente de validación manual de interfaz.
 
 ## Objetivos de aprendizaje
 
@@ -56,12 +56,14 @@ js/bayes.js
 js/charts.js
 js/laboratory.js
 js/activity.js
+js/assessment.js
 js/main.js
 tests/structure.test.js
 tests/bayes.test.js
 tests/laboratory.test.js
 tests/charts.test.js
 tests/activity.test.js
+tests/assessment.test.js
 assets/infografia/.gitkeep
 docs/proyecto.md
 docs/decisiones-pedagogicas.md
@@ -120,3 +122,36 @@ Ejecuta `git pull origin main`, `npm test` y `python3 -m http.server 8000`. Abre
 9. Comprueba teclado, pantalla estrecha y visualización en Firefox.
 
 **Nota docente:** la exploración libre es accesible por separado. Para recoger predicciones genuinas, solicita a los estudiantes que comiencen en el modo guiado sin consultar previamente el modo libre. La Fase 4 añadirá opciones de presentación que reduzcan ese riesgo.
+
+## Evaluación y privacidad (v0.5.0)
+
+La actividad guiada mantiene el flujo predicción → experimentos → reflexión → comprobación de comprensión → feedback.
+
+- Las **2 preguntas cerradas** generan una puntuación **formativa independiente (0–2)** y retroalimentación específica. Esta puntuación **no se suma** a la rúbrica.
+- La rúbrica de **10 puntos para las respuestas abiertas** exige revisión docente en la vista de profesor. No se genera nota de las abiertas de manera automática.
+- La vista de profesor **no tiene autenticación**: está incluida para demostración y revisión orientativa, no para un examen seguro. Solo aparece al completar el intento guiado.
+- Puedes **descargar un JSON** con las respuestas; no incluye nombre ni fecha. Es un archivo local. **Guardar en este navegador** conserva una copia únicamente tras pulsar el botón; **Borrar copia local** la elimina del almacenamiento local. "Empezar de nuevo" borra el intento visible, no el archivo previamente descargado ni una copia local: para eso utiliza "Borrar copia local".
+- No se envían respuestas a servicios remotos. Plotly se carga desde CDN exclusivamente para mostrar gráficos, por lo que el recurso gráfico requiere Internet. No se usan cuentas de estudiante.
+
+## Validación local de la Fase 4
+
+```bash
+git pull origin main
+npm test
+python3 -m http.server 8000
+```
+
+Abre http://localhost:8000 y revisa:
+
+1. No aparece feedback ni solución de evaluación antes de responder.
+2. La predicción, las 3 observaciones y los 2 textos funcionan como en Fase 3.
+3. Después de las explicaciones aparecen 2 preguntas cerradas, ambas obligatorias.
+4. Respuestas correctas: 2/2 y feedback específico. Reinicia, introduce errores y confirma el feedback correctivo.
+5. La nota 0–2 de las cerradas se distingue de la rúbrica 0–10 de las abiertas.
+6. La vista de profesor se despliega tras completar; permite evaluar criterios 3+3+3+1 y calcular una nota de 0 a 10.
+7. Descargar JSON produce respuestas, feedback y rúbrica si se aplicó.
+8. Guardar localmente, recargar y recuperar: aparecen las respuestas; borrar copia local elimina el registro.
+9. Reiniciar inicia un intento nuevo, la exploración libre conserva la funcionalidad.
+10. Revisar controles mediante teclado y pantalla estrecha.
+
+**Importante:** las opciones de profesor y los textos de solución son visibles a cualquier persona que termine la actividad, ya que la aplicación es estática y pública. Evita utilizar el modo profesor como sistema de evaluación protegido.

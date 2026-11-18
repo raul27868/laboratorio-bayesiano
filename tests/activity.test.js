@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   ACTIVITY_READY, GUIDED_EXPERIMENTS, createGuidedState,
-  recordPrediction, observeExperiment, submitReflection, guidedExperiment
+  recordPrediction, observeExperiment, submitReflection, submitClosedAnswers, guidedExperiment
 } from '../js/activity.js';
 
 test('la actividad comienza sin resultados ni predicción guardada', () => {
@@ -51,7 +51,10 @@ test('la reflexión requiere dos argumentos razonados y no califica automáticam
   const done = submitReflection(s,
     'Con más datos la incertidumbre posterior disminuye claramente.',
     'Con una priori Beta(20,20) la muestra pequeña pesa proporcionalmente menos.');
-  assert.equal(done.stage, 'completed');
-  assert.ok(!('score' in done));
-  assert.equal(done.prediction, 'narrow');
+  assert.equal(done.stage, 'quiz');
+  assert.throws(() => submitClosedAnswers(done, { uncertainty: 'decrease' }), RangeError);
+  const finished = submitClosedAnswers(done, { uncertainty: 'decrease', prior: 'small' });
+  assert.equal(finished.stage, 'completed');
+  assert.ok(!('score' in finished));
+  assert.equal(finished.prediction, 'narrow');
 });

@@ -45,3 +45,20 @@ No comunicar significado únicamente mediante colores. Presentar tablas de valor
 ## Integridad matemática y privacidad
 
 Validar toda fórmula y representación. No presentar predicciones o soluciones antes de recoger la respuesta. Emplear datos sintéticos; no enviar información de estudiantes a servicios externos.
+
+## Evaluación formativa — Fase 4
+
+Después de la predicción, los tres experimentos y las dos respuestas abiertas, el estudiante contesta dos preguntas cerradas. La retroalimentación se revela **después** de terminar, no en la predicción ni durante los experimentos.
+
+### Dos evidencias distintas
+
+- **Cuestionario cerrado:** 2 preguntas / 2 aciertos posibles; feedback de errores específicos.
+- **Rúbrica abierta (revisión humana):** interpretación posterior (3), reducción de incertidumbre (3), influencia de la priori (3) y uso de evidencias (1). La puntuación de la primera no se suma a la segunda, para evitar confundir dos escalas.
+
+### Límite de la vista de profesor
+
+La vista de profesor no está autenticada y puede abrirse tras completar el intento. Es una herramienta de autorrevisión y apoyo docente, no una prueba supervisada. Se deberá usar otro sistema si se pretende una evaluación sumativa con acceso restringido.
+
+### Protección de respuestas
+
+Por defecto solo viven en la memoria de la página. Puede descargarse un JSON o guardarse una copia en el almacenamiento local únicamente a petición expresa. No contiene identificadores personales. Las copias exportadas fuera de la web deben eliminarse manualmente.

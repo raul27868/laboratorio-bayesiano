@@ -4,8 +4,8 @@ import { readFileSync } from "node:fs";
 import { PROJECT_VERSION } from "../js/laboratory.js";
 import { BAYES_ENGINE_READY } from "../js/bayes.js";
 
-test("la estructura de la fase 3 declara la versión correcta", () => {
-  assert.equal(PROJECT_VERSION, "0.4.0");
+test("la estructura de la fase 4 declara la versión correcta", () => {
+  assert.equal(PROJECT_VERSION, "0.5.0);
   assert.equal(BAYES_ENGINE_READY, true);
 });
 
@@ -20,4 +20,7 @@ test("la portada tiene idioma, título, entrada JS y estilos", () => {
   assert.match(html, /id="comparison-chart"/);
   assert.match(html, /id="actividad-guiada"/);
   assert.match(html, /id="guided-prediction-form"/);
+  assert.match(html, /id="guided-quiz-form"/);
+  assert.match(html, /id="guided-teacher"/);
+  assert.match(html, /id="guided-download"/);
 });

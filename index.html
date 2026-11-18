@@ -17,7 +17,7 @@
       <a class="brand" href="./" aria-label="Laboratorio Bayesiano, inicio">
         <span class="brand-symbol" aria-hidden="true">β</span><span>Laboratorio <strong>Bayesiano</strong></span>
       </a>
-      <span class="version" aria-label="Versión 0.3.0">v0.4.0</span>
+      <span class="version" aria-label="Versión 0.5.0">v0.5.0</span>
     </div>
   </header>
   <main id="contenido">
@@ -25,7 +25,7 @@
       <p class="eyebrow">Estadística bayesiana · Modelo Beta-Binomial</p>
       <h1 id="titulo">¿Más datos significan <em>cambiar de opinión?</em></h1>
       <p class="lead">Aprende a distinguir entre cambiar una estimación y ganar confianza en ella. Formula una predicción, contrástala con los datos y explica qué has descubierto.</p>
-      <div class="status" role="status"><span class="status-dot" aria-hidden="true"></span> Actividad guiada disponible · Fase 3</div>
+      <div class="status" role="status"><span class="status-dot" aria-hidden="true"></span> Evaluación formativa disponible · Fase 4</div>
     </section>
     <section class="container section" aria-labelledby="recorrido">
       <h2 id="recorrido">El recorrido de aprendizaje</h2>
@@ -51,9 +51,10 @@
       <h2 id="guided-title">¿Más datos significan cambiar de opinión?</h2>
       <p class="section-intro">Vas a comparar tres experimentos con un 70 % de caras y una distribución a priori Beta(2,2). Primero predice, después observa y finalmente justifica tus conclusiones.</p>
       <div class="guided-card">
-        <div class="guided-topbar"><strong id="guided-status" aria-live="polite">Paso 1 de 3 · Predecir</strong><span>Sin calificación automática en esta versión</span></div>
+        <div class="guided-topbar"><strong id="guided-status" aria-live="polite">Paso 1 de 3 · Predecir</strong><span>Corrección de preguntas cerradas · abiertas con valoración docente</span></div>
         <p id="guided-alert" role="alert" class="field-error"></p>
         <div id="guided-prediction">
+          <div class="assessment-actions"><button type="button" id="guided-restore" class="guided-button secondary" hidden>Recuperar intento guardado</button></div>
           <h3>1. Formula tu predicción</h3>
           <p>Tenemos una moneda con probabilidad desconocida de cara, θ. Nuestra distribución a priori es Beta(2,2). En tres experimentos obtenemos el 70 % de caras con n=10, n=100 y n=1000.</p>
           <p><strong>¿Cómo esperas que cambie la distribución a posteriori cuando aumente el tamaño muestral sin variar la proporción de éxitos?</strong></p>
@@ -94,6 +95,24 @@
             <button type="submit" class="guided-button">Terminar y revisar mis respuestas</button>
           </form>
         </div>
+
+        <div id="guided-quiz" hidden>
+          <h3>4. Comprueba tu comprensión</h3>
+          <p>Responde dos preguntas. Recibirás explicaciones al finalizar, junto con la revisión de tu predicción inicial. Esta comprobación formativa no sustituye la valoración docente de tus respuestas abiertas.</p>
+          <form id="guided-quiz-form">
+            <fieldset class="guided-options"><legend>1. ¿Qué ocurre con la incertidumbre posterior cuando pasamos de 10 a 1000 observaciones manteniendo el 70 % de caras?</legend>
+              <label><input type="radio" name="quiz-uncertainty" value="grow" required> Aumenta porque hay más resultados posibles.</label>
+              <label><input type="radio" name="quiz-uncertainty" value="decrease"> Disminuye; la distribución se concentra cerca de 0,7.</label>
+              <label><input type="radio" name="quiz-uncertainty" value="same"> No cambia porque la proporción de caras es idéntica.</label>
+            </fieldset>
+            <fieldset class="guided-options"><legend>2. Si cambiamos la priori Beta(2,2) por Beta(20,20), ¿cuándo influye proporcionalmente más?</legend>
+              <label><input type="radio" name="quiz-prior" value="small" required> Con 10 observaciones, porque los datos aportan menos información relativa.</label>
+              <label><input type="radio" name="quiz-prior" value="large"> Con 1000 observaciones, porque la priori se acumula con cada dato.</label>
+              <label><input type="radio" name="quiz-prior" value="equal"> Influye igual con ambos tamaños.</label>
+            </fieldset>
+            <button type="submit" class="guided-button">Finalizar y obtener retroalimentación</button>
+          </form>
+        </div>
         <div id="guided-completed" hidden>
           <h3>Actividad terminada</h3>
           <p>Has realizado una predicción antes de observar los resultados y has elaborado dos explicaciones. Conservamos tus respuestas en pantalla para que puedas revisarlas.</p>
@@ -101,7 +120,30 @@
           <h4>Tu interpretación</h4><p id="guided-reflection-review" class="guided-answer"></p>
           <h4>Tu respuesta de transferencia</h4><p id="guided-transfer-review" class="guided-answer"></p>
           <p class="chart-help">En esta versión no se realiza una corrección automática ni se envían respuestas a un servidor. La evaluación y retroalimentación llegarán en la Fase 4.</p>
-          <button type="button" id="guided-restart" class="guided-button">Empezar de nuevo</button>
+
+          <section class="assessment-review" aria-labelledby="guided-feedback-title">
+            <h4 id="guided-feedback-title">Retroalimentación formativa</h4>
+            <p id="guided-prediction-feedback" class="interpretation"></p>
+            <p id="guided-quiz-summary" class="guided-answer"></p>
+            <div id="guided-feedback-list"></div>
+          </section>
+          <div class="assessment-actions">
+            <button type="button" id="guided-download" class="guided-button">Descargar mis respuestas (JSON)</button>
+            <button type="button" id="guided-save" class="guided-button secondary">Guardar en este navegador</button>
+            <button type="button" id="guided-forget" class="guided-button secondary">Borrar copia local</button>
+          </div>
+          <p id="guided-storage-message" class="chart-help" role="status"></p>
+          <details id="guided-teacher" class="teacher-panel">
+            <summary>Vista de profesor: orientaciones y rúbrica</summary>
+            <p class="chart-help">Esta vista no requiere autenticación: es una ayuda de corrección, no una solución protegida para exámenes. Se muestra únicamente al completar el intento guiado.</p>
+            <h4>Solución conceptual orientativa</h4>
+            <p>La posterior Beta(α+x, β+n−x) incorpora las observaciones. Con Beta(2,2), las medias para n=10,100,1000 son aproximadamente 0,6429; 0,6923; 0,6992. Las desviaciones típicas disminuyen aproximadamente de 0,1237 a 0,0450 y 0,0145. Beta(20,20) incorpora mayor concentración previa, por lo que con n=10 atrae más la estimación hacia 0,5 que Beta(2,2); con n=1000 domina relativamente la información de la muestra.</p>
+            <h4>Valoración docente de las respuestas abiertas (máx. 10 puntos)</h4>
+            <form id="guided-rubric-fields" class="rubric-fields" aria-label="Rúbrica docente"></form>
+            <button type="button" id="guided-rubric-apply" class="guided-button">Calcular valoración docente</button>
+            <p id="guided-rubric-result" role="status">Pendiente de valoración docente.</p>
+          </details>
+          <button type="button" id="guided-restart" class="guided-button secondary">Empezar de nuevo</button>
         </div>
       </div>
     </section>

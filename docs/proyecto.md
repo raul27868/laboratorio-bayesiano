@@ -39,13 +39,16 @@ Modelo: una probabilidad desconocida θ, priori Beta(α,β), datos binomiales co
 - [x] Pregunta de transferencia para otra priori.
 
 
-**Estado:** implementada; pendiente de validación manual local.
+**Estado:** validación local comunicada por el usuario: 9 de 9 comprobaciones correctas.
 
 ### Fase 4 — v0.5.0: evaluación
-- [ ] Respuestas cerradas con feedback específico por error.
-- [ ] Preguntas abiertas con criterios de valoración y revisión humana.
-- [ ] Registro local sin datos personales.
-- [ ] Modo profesor con soluciones y modo estudiante sin revelación prematura.
+- [x] Respuestas cerradas con feedback específico por error.
+- [x] Preguntas abiertas con criterios de valoración y revisión humana.
+- [x] Registro local sin datos personales.
+- [x] Modo profesor con soluciones y modo estudiante sin revelación prematura.
+
+
+**Estado:** implementada, pendiente de pruebas manuales en Firefox. La rúbrica abierta es de revisión humana; el cuestionario cerrado es formativo e independiente.
 
 ### Fase 5 — v0.6.0: material y usabilidad
 - [ ] Infografía basada en datos matemáticos verificados.

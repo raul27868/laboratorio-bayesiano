@@ -1,7 +1,7 @@
 import { betaBinomialPosterior, betaSummary, referenceScenarios } from './bayes.js';
 import { renderPriorPosterior, renderComparison } from './charts.js';
 
-export const PROJECT_VERSION = '0.4.0';
+export const PROJECT_VERSION = '0.5.0';
 export const LABORATORY_READY = true;
 
 export const DEFAULTS = Object.freeze({ alpha: 2, beta: 2, n: 10, successes: 7 });

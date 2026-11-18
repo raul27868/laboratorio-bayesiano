@@ -37,3 +37,11 @@ Documentar los prompts concretos de implementación y las correcciones que surja
 **Criterios didácticos y técnicos:** bloquear las gráficas y tablas de la actividad hasta registrar una predicción; impedir saltarse observaciones; mantener resultados visibles al interpretar; añadir pregunta de transferencia Beta(20,20); evitar calificaciones automáticas prematuras; permitir reiniciar y no enviar respuestas a servidores.
 
 **Comprobación:** batería automatizada para transición de estados, orden de experimentos, cálculo de las posteriores, condiciones para finalizar y ausencia de calificación. Validación de la interfaz y accesibilidad pendiente de revisión local en Firefox.
+
+## Fase 4 — evaluación y retroalimentación
+
+**Encargo:** añadir corrección automática y feedback individual de dos preguntas cerradas posteriores a la reflexión, sin atribuir notas automáticas a razonamientos abiertos. Incluir una rúbrica con máximos 3+3+3+1 que pueda aplicar el profesor, consulta posterior de criterios y respuesta modelo, exportación local JSON y guardado opcional en el navegador.
+
+**Restricciones:** retroalimentación solo tras completar el cuestionario; evitar presentar 2/2 como calificación total del aprendizaje; no pedir datos personales ni transmitir respuestas; una vista de profesor en web estática no supone autenticación. Mantener la exploración libre y el orden de la actividad validada.
+
+**Verificación requerida:** pruebas de transiciones, respuestas válidas/inválidas, corrección cerrada, suma y límites de rúbrica, exportación y recuperación de datos. Verificación visual y de almacenamiento en Firefox, pendiente de revisión del usuario.
