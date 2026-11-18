@@ -6,7 +6,7 @@ Aplicación educativa interactiva para explorar la inferencia bayesiana, con esp
 
 ## Estado del proyecto
 
-**v0.1.0 — Fase 0: estructura y portada inicial.** La interfaz inicial está disponible; los cálculos y las actividades se incorporarán en fases posteriores.
+**v0.2.0 — Fase 1: motor Beta-Binomial.** El motor matemático y sus pruebas están implementados; la interfaz de exploración y las actividades se incorporarán en fases posteriores.
 
 ## Objetivos de aprendizaje
 
@@ -45,7 +45,7 @@ Abrir `http://localhost:8000`.
 node --test tests/*.test.js
 ```
 
-Requiere una versión moderna de Node.js. En la Fase 0 se incluyen pruebas básicas de estructura; las pruebas numéricas comenzarán en la Fase 1.
+Requiere una versión moderna de Node.js. Hay pruebas básicas de estructura y pruebas numéricas del motor Beta-Binomial.
 
 ## Estructura
 
@@ -58,6 +58,7 @@ js/laboratory.js
 js/activity.js
 js/main.js
 tests/structure.test.js
+tests/bayes.test.js
 assets/infografia/.gitkeep
 docs/proyecto.md
 docs/decisiones-pedagogicas.md

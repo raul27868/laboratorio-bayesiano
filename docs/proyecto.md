@@ -17,11 +17,11 @@ Modelo: una probabilidad desconocida θ, priori Beta(α,β), datos binomiales co
 - [x] Documentación inicial de decisiones pedagógicas y arquitectura.
 
 ### Fase 1 — v0.2.0: matemáticas
-- [ ] Validación de α, β > 0; n entero no negativo; x entero con 0 ≤ x ≤ n.
-- [ ] Posterior Beta(α+x, β+n−x).
-- [ ] Media y varianza de la Beta.
-- [ ] Densidades numéricamente estables y tratamiento apropiado de extremos.
-- [ ] Pruebas de referencia para n = 10, 100 y 1000; comprobación de normalización y casos límite.
+- [x] Validación de α, β > 0; n entero no negativo; x entero con 0 ≤ x ≤ n.
+- [x] Posterior Beta(α+x, β+n−x).
+- [x] Media y varianza de la Beta.
+- [x] Densidades numéricamente estables y tratamiento apropiado de extremos.
+- [x] Pruebas de referencia para n = 10, 100 y 1000; comprobación de normalización y casos límite.
 
 ### Fase 2 — v0.3.0: exploración
 - [ ] Controles de α, β, n y x accesibles con teclado.

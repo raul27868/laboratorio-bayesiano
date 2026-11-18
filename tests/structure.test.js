@@ -4,9 +4,9 @@ import { readFileSync } from "node:fs";
 import { PROJECT_VERSION } from "../js/laboratory.js";
 import { BAYES_ENGINE_READY } from "../js/bayes.js";
 
-test("la estructura inicial declara la versión correcta", () => {
-  assert.equal(PROJECT_VERSION, "0.1.0");
-  assert.equal(BAYES_ENGINE_READY, false);
+test("la estructura de la fase 1 declara la versión correcta", () => {
+  assert.equal(PROJECT_VERSION, "0.2.0");
+  assert.equal(BAYES_ENGINE_READY, true);
 });
 
 test("la portada tiene idioma, título, entrada JS y estilos", () => {

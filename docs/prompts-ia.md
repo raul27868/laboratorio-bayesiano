@@ -13,3 +13,11 @@ Este documento recogerá los prompts relevantes, el objetivo de cada solicitud, 
 ## Próximas fases
 
 Documentar los prompts concretos de implementación y las correcciones que surjan en las pruebas; distinguir siempre código generado, revisión y validación docente.
+
+## Fase 1 — motor matemático
+
+**Encargo resumido:** implementar funciones puras del modelo Beta-Binomial con validación de parámetros, densidad Beta, momentos, actualización conjugada y los tres escenarios de referencia.
+
+**Restricciones:** separar cálculos e interfaz, no usar factoriales directos para densidades, evaluar la densidad mediante logGamma y logBeta, contemplar los extremos del soporte y proporcionar pruebas automáticas.
+
+**Verificación:** pruebas unitarias de identidades de la función Gamma y Beta, Beta uniforme, casos conjugados, valores de media y desviación típica, normalización numérica y rechazo de entradas inválidas. En la primera ejecución se detectaron dos constantes de desviación típica escritas manualmente con errores; se recalcularon con la fórmula analítica y la batería superó las siete pruebas del módulo.
