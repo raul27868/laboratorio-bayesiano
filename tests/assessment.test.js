@@ -1,52 +1,50 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { QUESTIONS, PREDICTION_FEEDBACK, RUBRIC, evaluateClosedAnswers, rubricTotal, exportAttempt, validateStoredAttempt } from '../js/assessment.js';
+import { QUESTIONS, TOTAL_POINTS, PREDICTION_FEEDBACK, evaluateClosedAnswers, exportAttempt, validateStoredAttempt } from '../js/assessment.js';
 
-test('cada respuesta cerrada recibe feedback específico, sin revelar nada antes de responder', () => {
-  assert.equal(QUESTIONS.length, 2);
-  const success = evaluateClosedAnswers({ uncertainty: 'decrease', prior: 'small' });
-  assert.equal(success.correct, 2);
-  assert.equal(success.total, 2);
-  assert.ok(success.details.every(d => d.correct));
-  const mistakes = evaluateClosedAnswers({ uncertainty: 'same', prior: 'large' });
-  assert.equal(mistakes.correct, 0);
-  assert.match(mistakes.details[0].feedback, /proporción/);
-  assert.match(PREDICTION_FEEDBACK.mean, /media/);
-  assert.throws(() => evaluateClosedAnswers({ uncertainty: 'decrease' }), RangeError);
-  assert.throws(() => evaluateClosedAnswers({ uncertainty: 'other', prior: 'small' }), RangeError);
+const correctAnswers = Object.fromEntries(QUESTIONS.map(q => [q.id, q.correct]));
+
+test('seis preguntas y 10 puntos objetivos', () => {
+  assert.equal(QUESTIONS.length, 6);
+  assert.equal(TOTAL_POINTS, 10);
+  assert.ok(QUESTIONS.every(q => q.choices.length === 4 && q.choices.every(c => c.feedback)));
+  assert.equal(new Set(QUESTIONS.map(q => q.id)).size, 6);
 });
 
-test('la rúbrica puntúa 10 puntos, sin corregir automáticamente respuestas abiertas', () => {
-  assert.equal(RUBRIC.reduce((sum, c) => sum + c.max, 0), 10);
-  assert.equal(rubricTotal({ interpretation: 3, uncertainty: 3, prior: 3, evidence: 1 }), 10);
-  assert.equal(rubricTotal({ interpretation: 1, uncertainty: 2, prior: 1, evidence: 0 }), 4);
-  assert.throws(() => rubricTotal({ interpretation: 4, uncertainty: 3, prior: 3, evidence: 1 }), RangeError);
-  assert.throws(() => rubricTotal({ interpretation: 3, uncertainty: 3, prior: 3 }), RangeError);
+test('seis respuestas correctas obtienen 10/10', () => {
+  const result = evaluateClosedAnswers(correctAnswers);
+  assert.equal(result.points, 10);
+  assert.equal(result.correct, 6);
+  assert.equal(result.total, 6);
+  assert.ok(result.details.every(d => d.correct && d.feedback && d.correctLabel));
 });
 
-const finished = {
-  stage: 'completed', prediction: 'narrow', seen: [10, 100, 1000],
-  reflection: 'El tamaño muestral cambia la precisión de la posterior.',
-  transfer: 'Una priori Beta(20,20) influye relativamente más con n pequeño.',
-  quizAnswers: { uncertainty: 'decrease', prior: 'small' }
-};
+test('cada opción errónea se corrige y muestra la solución correcta', () => {
+  for (const question of QUESTIONS) {
+    for (const choice of question.choices.filter(c => c.id !== question.correct)) {
+      const result = evaluateClosedAnswers({ ...correctAnswers, [question.id]: choice.id });
+      assert.equal(result.points, 10 - question.points);
+      const detail = result.details.find(d => d.id === question.id);
+      assert.equal(detail.correct, false);
+      assert.ok(detail.feedback.length > 15);
+      assert.equal(detail.correctLabel, question.choices.find(c => c.id === question.correct).label);
+    }
+  }
+});
 
-test('el informe exportado es reproducible y no contiene identificadores', () => {
-  const report = exportAttempt(finished);
-  assert.equal(report.schema, 'laboratorio-bayesiano/attempt/v1');
-  assert.equal(report.closedFeedback.correct, 2);
-  assert.equal(report.rubric, null);
-  assert.equal(report.openAnswersRequireHumanReview, true);
+test('no se admiten cuestionarios incompletos ni respuestas desconocidas', () => {
+  assert.throws(() => evaluateClosedAnswers({}), RangeError);
+  assert.throws(() => evaluateClosedAnswers({ ...correctAnswers, mean: 'inexistente' }), RangeError);
+});
+
+test('informe JSON completo, autocorregido y sin datos personales', () => {
+  const state = { stage: 'completed', prediction: 'same', seen: [10, 100, 1000], quizAnswers: correctAnswers };
+  const report = exportAttempt(state);
+  assert.equal(report.schema, 'laboratorio-bayesiano/attempt/v2');
+  assert.equal(report.result.points, 10);
+  assert.equal(report.predictionFeedback, PREDICTION_FEEDBACK.same);
   assert.equal(validateStoredAttempt(JSON.parse(JSON.stringify(report))), true);
-  assert.ok(!('studentName' in report));
-  assert.ok(!('timestamp' in report));
-  assert.throws(() => exportAttempt({ ...finished, stage: 'quiz' }));
-});
-
-test('el reporte puede incorporar una rúbrica aplicada por el docente', () => {
-  const report = exportAttempt(finished, { interpretation: 3, uncertainty: 2, prior: 2, evidence: 1 });
-  assert.equal(report.rubric.total, 8);
-  assert.equal(report.openAnswersRequireHumanReview, false);
-  assert.equal(validateStoredAttempt(report), true);
-  assert.throws(() => validateStoredAttempt({ ...report, prediction: 'other' }), RangeError);
+  assert.ok(!('rubric' in report) && !('reflection' in report) && !('teacherScores' in report));
+  assert.throws(() => exportAttempt({ ...state, stage: 'prediction' }));
+  assert.throws(() => validateStoredAttempt({ ...report, schema: 'laboratorio-bayesiano/attempt/v1' }), RangeError);
 });

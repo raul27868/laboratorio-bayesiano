@@ -35,20 +35,20 @@ Modelo: una probabilidad desconocida θ, priori Beta(α,β), datos binomiales co
 ### Fase 3 — v0.4.0: actividad guiada
 - [x] Predicción inicial antes de revelar resultados.
 - [x] Experimentos de 10, 100 y 1000 observaciones con 70 % de éxitos.
-- [x] Explicación escrita y contraste con la predicción.
-- [x] Pregunta de transferencia para otra priori.
+- [x] Interpretación de resultados mediante cuestiones guiadas (revisado en v0.5.1).
+- [x] Pregunta de transferencia a otra priori, ahora en formato cerrado.
 
 
 **Estado:** validación local comunicada por el usuario: 9 de 9 comprobaciones correctas.
 
 ### Fase 4 — v0.5.0: evaluación
 - [x] Respuestas cerradas con feedback específico por error.
-- [x] Preguntas abiertas con criterios de valoración y revisión humana.
+- [x] Seis preguntas cerradas con puntuación total 10 puntos y feedback específico, sin intervención docente.
 - [x] Registro local sin datos personales.
-- [x] Modo profesor con soluciones y modo estudiante sin revelación prematura.
+- [x] Resultados autocorregidos al finalizar y ausencia de revelación prematura en la actividad guiada.
 
 
-**Estado:** implementada, pendiente de pruebas manuales en Firefox. La rúbrica abierta es de revisión humana; el cuestionario cerrado es formativo e independiente.
+**Estado:** revisada en v0.5.1 para ser totalmente autocorregible, pendiente de validación local. Se retiró la rúbrica docente.
 
 ### Fase 5 — v0.6.0: material y usabilidad
 - [ ] Infografía basada en datos matemáticos verificados.

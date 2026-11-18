@@ -6,7 +6,7 @@ Aplicación educativa interactiva para explorar la inferencia bayesiana, con esp
 
 ## Estado del proyecto
 
-**v0.5.0 — Fase 4: evaluación formativa.** Preguntas cerradas corregidas con feedback diferido, rúbrica de 10 puntos para valoración docente de las abiertas, exportación JSON y guardado local opcional. Pendiente de validación manual de interfaz.
+**v0.5.1 — Fase 4 revisada: actividad completamente autocorregible.** Predicción previa, tres experimentos, seis preguntas cerradas (10 puntos), feedback diferido y exportación/guardado local. Pendiente de validación local de la nueva versión.
 
 ## Objetivos de aprendizaje
 
@@ -20,8 +20,8 @@ Aplicación educativa interactiva para explorar la inferencia bayesiana, con esp
 
 1. **Predecir:** formular una hipótesis antes de visualizar el resultado.
 2. **Experimentar:** modificar parámetros y observar sus consecuencias.
-3. **Explicar:** interpretar las diferencias entre predicción y evidencia.
-4. **Evaluar:** responder preguntas y recibir retroalimentación.
+3. **Interpretar:** contrastar los experimentos a través de preguntas tipo test.
+4. **Autocorregir:** conocer la puntuación y comprender los errores.
 
 Se contemplan dos modos: **exploración libre** y **actividad guiada**.
 
@@ -123,17 +123,17 @@ Ejecuta `git pull origin main`, `npm test` y `python3 -m http.server 8000`. Abre
 
 **Nota docente:** la exploración libre es accesible por separado. Para recoger predicciones genuinas, solicita a los estudiantes que comiencen en el modo guiado sin consultar previamente el modo libre. La Fase 4 añadirá opciones de presentación que reduzcan ese riesgo.
 
-## Evaluación y privacidad (v0.5.0)
+## Evaluación y privacidad (v0.5.1)
 
-La actividad guiada mantiene el flujo predicción → experimentos → reflexión → comprobación de comprensión → feedback.
+- **Seis preguntas de respuesta única, todas obligatorias**, con un total de **10 puntos**. La pregunta inicial de predicción es una hipótesis formativa y **no se penaliza**.
+- El cuestionario exige interpretar los experimentos: distribución posterior, media, incertidumbre, comparación de tamaños muestrales, efecto de la priori y evidencia numérica. Cada pregunta ofrece cuatro distractores y un feedback específico tras terminar.
+- No hay textos abiertos, rúbrica docente ni calificación manual. La evaluación y el feedback se calculan en el propio navegador.
+- Las tablas y curvas experimentales permanecen visibles durante las preguntas. Las soluciones y correcciones no se muestran hasta entregar el test.
+- El JSON de resultados usa el esquema `laboratorio-bayesiano/attempt/v2`. La versión anterior `v1` contenía respuestas abiertas y no se recupera automáticamente: inicia un intento nuevo.
+- La exportación JSON y el guardado opcional en `localStorage` no incluyen identificadores personales. Puedes borrar una copia local o descargar los resultados. Ningún dato de respuestas se envía a un servidor.
+- Los gráficos usan Plotly mediante CDN y requieren Internet.
 
-- Las **2 preguntas cerradas** generan una puntuación **formativa independiente (0–2)** y retroalimentación específica. Esta puntuación **no se suma** a la rúbrica.
-- La rúbrica de **10 puntos para las respuestas abiertas** exige revisión docente en la vista de profesor. No se genera nota de las abiertas de manera automática.
-- La vista de profesor **no tiene autenticación**: está incluida para demostración y revisión orientativa, no para un examen seguro. Solo aparece al completar el intento guiado.
-- Puedes **descargar un JSON** con las respuestas; no incluye nombre ni fecha. Es un archivo local. **Guardar en este navegador** conserva una copia únicamente tras pulsar el botón; **Borrar copia local** la elimina del almacenamiento local. "Empezar de nuevo" borra el intento visible, no el archivo previamente descargado ni una copia local: para eso utiliza "Borrar copia local".
-- No se envían respuestas a servicios remotos. Plotly se carga desde CDN exclusivamente para mostrar gráficos, por lo que el recurso gráfico requiere Internet. No se usan cuentas de estudiante.
-
-## Validación local de la Fase 4
+## Pruebas locales de la Fase 4 revisada
 
 ```bash
 git pull origin main
@@ -141,17 +141,17 @@ npm test
 python3 -m http.server 8000
 ```
 
-Abre http://localhost:8000 y revisa:
+Abre http://localhost:8000 y comprueba:
 
-1. No aparece feedback ni solución de evaluación antes de responder.
-2. La predicción, las 3 observaciones y los 2 textos funcionan como en Fase 3.
-3. Después de las explicaciones aparecen 2 preguntas cerradas, ambas obligatorias.
-4. Respuestas correctas: 2/2 y feedback específico. Reinicia, introduce errores y confirma el feedback correctivo.
-5. La nota 0–2 de las cerradas se distingue de la rúbrica 0–10 de las abiertas.
-6. La vista de profesor se despliega tras completar; permite evaluar criterios 3+3+3+1 y calcular una nota de 0 a 10.
-7. Descargar JSON produce respuestas, feedback y rúbrica si se aplicó.
-8. Guardar localmente, recargar y recuperar: aparecen las respuestas; borrar copia local elimina el registro.
-9. Reiniciar inicia un intento nuevo, la exploración libre conserva la funcionalidad.
-10. Revisar controles mediante teclado y pantalla estrecha.
+1. Antes de la predicción no se muestran gráficas ni correcciones de la actividad guiada.
+2. No puedes avanzar sin elegir predicción.
+3. Los experimentos se revelan en orden y las curvas se acumulan.
+4. Al terminar el tercer experimento aparecen seis preguntas cerradas, sin áreas de texto libre.
+5. No puedes finalizar si falta alguna respuesta.
+6. Puedes consultar las curvas y la tabla durante el cuestionario.
+7. Con todas las respuestas correctas obtienes **10/10**, con seis explicaciones.
+8. Si fallas alguna pregunta disminuye la nota y se muestra la opción correcta y el feedback específico.
+9. Reiniciar permite un nuevo intento. El JSON exportado muestra puntuación y respuestas sin rúbrica ni textos abiertos.
+10. Guardar en navegador, recuperar y borrar registro funcionan; la exploración libre no cambia.
 
-**Importante:** las opciones de profesor y los textos de solución son visibles a cualquier persona que termine la actividad, ya que la aplicación es estática y pública. Evita utilizar el modo profesor como sistema de evaluación protegido.
+**Nota:** esta autocorrección funciona como herramienta formativa. En un sitio estático público, las respuestas correctas están incluidas en el código y no constituyen un sistema de examen seguro.

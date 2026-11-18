@@ -17,7 +17,7 @@ Al finalizar, el estudiante debe ser capaz de:
 
 ## Diseño de la experiencia
 
-**Predecir → Experimentar → Explicar → Evaluar**. La respuesta inicial se recoge antes de mostrar gráficos, evitando que el estudiante responda copiando el resultado. La experimentación permite contrastar hipótesis y la explicación verbal obliga a interpretar.
+**Predecir → Experimentar → Explicar → Evaluar**. La respuesta inicial se recoge antes de mostrar gráficos, evitando que el estudiante responda copiando el resultado. La experimentación permite contrastar hipótesis y las preguntas cerradas exigen interpretar resultados mediante situaciones concretas y distractores razonados.
 
 ## Escenarios de referencia
 
@@ -29,14 +29,21 @@ Al finalizar, el estudiante debe ser capaz de:
 
 La estimación posterior cambia aunque la proporción muestral se mantenga. La precisión aumenta. Evitar afirmar que la media posterior es idéntica en los tres escenarios.
 
-## Evaluación provisional (10 puntos)
+## Evaluación autocorregible (10 puntos)
 
-- Interpretación de la posterior: 3.
-- Efecto del tamaño muestral sobre incertidumbre: 3.
-- Influencia de la priori: 3.
-- Justificación con evidencias: 1.
+La hipótesis inicial no se puntúa: se registra antes de revelar los resultados y recibe feedback tras terminar. La calificación se obtiene en **seis preguntas de opción única**:
 
-Las respuestas abiertas requieren valoración docente; la interfaz no debe equiparar coincidencias de palabras con comprensión real.
+| Pregunta | Competencia | Puntos |
+| --- | --- | ---: |
+| 1 | Actualización Beta-Binomial | 2 |
+| 2 | Evolución de la media posterior | 1 |
+| 3 | Disminución de incertidumbre | 2 |
+| 4 | Comparación con igual frecuencia y distinto n | 2 |
+| 5 | Influencia de la priori Beta(20,20) | 2 |
+| 6 | Evidencia numérica de mayor precisión | 1 |
+| **Total** | | **10** |
+
+Las seis cuestiones exigen escoger una respuesta entre cuatro alternativas plausibles. Al terminar se muestra la respuesta seleccionada, la explicación específica y la solución en caso de error. No hay valoración subjetiva ni criterios que requieran revisión docente.
 
 ## Inclusión y accesibilidad
 
@@ -44,21 +51,8 @@ No comunicar significado únicamente mediante colores. Presentar tablas de valor
 
 ## Integridad matemática y privacidad
 
-Validar toda fórmula y representación. No presentar predicciones o soluciones antes de recoger la respuesta. Emplear datos sintéticos; no enviar información de estudiantes a servicios externos.
+Validar toda fórmula y representación. No presentar predicciones o soluciones antes de recoger la respuesta. Emplear datos sintéticos; no enviar información de estudiantes a servicios externos. Las respuestas pueden guardarse de forma opcional en el navegador o descargarse como JSON. El esquema de guardado se actualizó a v2 por incompatibilidad con las antiguas respuestas abiertas.
 
-## Evaluación formativa — Fase 4
+## Limitaciones
 
-Después de la predicción, los tres experimentos y las dos respuestas abiertas, el estudiante contesta dos preguntas cerradas. La retroalimentación se revela **después** de terminar, no en la predicción ni durante los experimentos.
-
-### Dos evidencias distintas
-
-- **Cuestionario cerrado:** 2 preguntas / 2 aciertos posibles; feedback de errores específicos.
-- **Rúbrica abierta (revisión humana):** interpretación posterior (3), reducción de incertidumbre (3), influencia de la priori (3) y uso de evidencias (1). La puntuación de la primera no se suma a la segunda, para evitar confundir dos escalas.
-
-### Límite de la vista de profesor
-
-La vista de profesor no está autenticada y puede abrirse tras completar el intento. Es una herramienta de autorrevisión y apoyo docente, no una prueba supervisada. Se deberá usar otro sistema si se pretende una evaluación sumativa con acceso restringido.
-
-### Protección de respuestas
-
-Por defecto solo viven en la memoria de la página. Puede descargarse un JSON o guardarse una copia en el almacenamiento local únicamente a petición expresa. No contiene identificadores personales. Las copias exportadas fuera de la web deben eliminarse manualmente.
+La autocorrección mide las decisiones que el estudiante toma ante situaciones de interpretación, no sustituye por completo la evaluación de un razonamiento escrito. La aplicación es pública y no está diseñada para exámenes sumativos supervisados.

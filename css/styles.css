@@ -64,3 +64,10 @@
 .rubric-row select{padding:8px;border:1px solid #94a7b9;border-radius:7px;font:inherit;min-width:60px}
 #guided-feedback-list p{border-left:3px solid var(--blue);padding:9px 14px;background:#fff}
 @media(max-width:550px){.rubric-row{grid-template-columns:1fr}.assessment-actions .guided-button{width:100%}}
+
+/* Revisión autocorregible v0.5.1 */
+.score-block{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;border:1px solid #b8d5d3;background:#e9f5f3;border-radius:12px;padding:16px;margin:14px 0}
+.score-block strong{font-size:1.5rem;color:var(--teal)}
+.feedback-item{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.feedback-item h4{margin:0 0 9px}
+.feedback-item p{margin:8px 0}

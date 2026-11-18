@@ -5,7 +5,7 @@ import { PROJECT_VERSION } from "../js/laboratory.js";
 import { BAYES_ENGINE_READY } from "../js/bayes.js";
 
 test("la estructura de la fase 4 declara la versión correcta", () => {
-  assert.equal(PROJECT_VERSION, "0.5.0");
+  assert.equal(PROJECT_VERSION, "0.5.1");
   assert.equal(BAYES_ENGINE_READY, true);
 });
 
@@ -21,6 +21,8 @@ test("la portada tiene idioma, título, entrada JS y estilos", () => {
   assert.match(html, /id="actividad-guiada"/);
   assert.match(html, /id="guided-prediction-form"/);
   assert.match(html, /id="guided-quiz-form"/);
-  assert.match(html, /id="guided-teacher"/);
+  assert.doesNotMatch(html, /id="guided-teacher"/);
   assert.match(html, /id="guided-download"/);
+  assert.match(html, /id="guided-score"/);
+  assert.doesNotMatch(html, /id="guided-explain"/);
 });

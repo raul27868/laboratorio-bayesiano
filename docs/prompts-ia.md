@@ -45,3 +45,13 @@ Documentar los prompts concretos de implementación y las correcciones que surja
 **Restricciones:** retroalimentación solo tras completar el cuestionario; evitar presentar 2/2 como calificación total del aprendizaje; no pedir datos personales ni transmitir respuestas; una vista de profesor en web estática no supone autenticación. Mantener la exploración libre y el orden de la actividad validada.
 
 **Verificación requerida:** pruebas de transiciones, respuestas válidas/inválidas, corrección cerrada, suma y límites de rúbrica, exportación y recuperación de datos. Verificación visual y de almacenamiento en Firefox, pendiente de revisión del usuario.
+
+## Fase 4 revisada — actividad íntegramente autocorregible (v0.5.1)
+
+**Solicitud:** sustituir todas las explicaciones abiertas y la rúbrica manual por preguntas cerradas tipo test. Mantener la experimentación guiada y la predicción inicial, y ofrecer al estudiante autocorrección inmediata al terminar, sin esperar al docente.
+
+**Diseño:** seis cuestiones de cuatro alternativas que suman 10 puntos y evalúan actualización posterior, media, incertidumbre, comparación con frecuencia constante, influencia de la priori y uso de evidencia. La predicción inicial sigue siendo no evaluable; el feedback se revela solo tras entregar el test.
+
+**Cambios técnicos:** retirar los campos libres y la vista de profesor, adaptar la máquina de estados, el motor de evaluación y la exportación. Nuevo esquema JSON y clave local v2, porque el antiguo formato contenía textos y valoraciones docentes. Mantener los gráficos y la exploración libre sin cambios.
+
+**Comprobación:** pruebas para claves y distractores, puntos, secuencia, obligatoriedad, exportación y rechazo del formato v1; validación visual y de almacenamiento pendiente de revisión local.
