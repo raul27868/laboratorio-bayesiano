@@ -14,10 +14,15 @@
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="./" aria-label="Laboratorio Bayesiano, inicio">
+      <a class="brand" href="#contenido" aria-label="Laboratorio Bayesiano, inicio">
         <span class="brand-symbol" aria-hidden="true">β</span><span>Laboratorio <strong>Bayesiano</strong></span>
       </a>
-      <span class="version" aria-label="Versión 0.5.0">v0.5.1</span>
+      <nav class="header-nav" aria-label="Navegación principal">
+        <a href="#actividad-guiada">Actividad guiada</a>
+        <a href="#laboratorio">Explorar</a>
+        <a href="#infografia">Resumen visual</a>
+      </nav>
+      <span class="version" aria-label="Versión 0.6.0">v0.6.0</span>
     </div>
   </header>
   <main id="contenido">
@@ -25,12 +30,13 @@
       <p class="eyebrow">Estadística bayesiana · Modelo Beta-Binomial</p>
       <h1 id="titulo">¿Más datos significan <em>cambiar de opinión?</em></h1>
       <p class="lead">Aprende a distinguir entre cambiar una estimación y ganar confianza en ella. Formula una predicción, contrástala con los datos y explica qué has descubierto.</p>
-      <div class="status" role="status"><span class="status-dot" aria-hidden="true"></span> Actividad autocorregible · Fase 4 revisada</div>
+      <div class="status" role="status"><span class="status-dot" aria-hidden="true"></span> Exploración, actividad guiada y autocorrección disponibles</div>
     </section>
+    <div class="container quick-links"><a href="#actividad-guiada" class="quick-primary">Empezar actividad guiada</a><a href="#laboratorio" class="quick-secondary">Explorar distribuciones</a></div>
     <section class="container section" aria-labelledby="recorrido">
       <h2 id="recorrido">El recorrido de aprendizaje</h2>
       <p class="section-intro">Un recorrido para predecir, contrastar tus hipótesis e interpretar resultados.</p>
-      <div class="steps">
+      <div class="steps" aria-label="Etapas del aprendizaje">
         <article class="step"><span class="step-no">01</span><h3>Predecir</h3><p>Anticipa qué sucede con la distribución posterior cuando incorporamos más observaciones.</p></article>
         <article class="step"><span class="step-no">02</span><h3>Experimentar</h3><p>Explora el efecto de la información previa, los éxitos y el tamaño de la muestra.</p></article>
         <article class="step"><span class="step-no">03</span><h3>Interpretar</h3><p>Responde preguntas sobre medias, incertidumbre y prioris basándote en los gráficos.</p></article>
@@ -75,7 +81,8 @@
           <p id="guided-next-label" class="guided-next"></p>
           <button id="guided-observe" type="button" class="guided-button">Revelar experimento n=10</button>
           <p id="guided-progress" class="chart-help" aria-live="polite">Aún no has observado ningún experimento.</p>
-          <div id="guided-chart" class="plot" role="img" aria-label="Curvas posteriores de los experimentos revelados. La tabla contiene sus valores numéricos." hidden></div>
+          <div id="guided-chart" class="plot" role="img" aria-describedby="guided-chart-note" aria-label="Curvas posteriores de los experimentos revelados. La tabla contiene sus valores numéricos." hidden></div>
+          <p id="guided-chart-note" class="chart-help">La escala horizontal muestra θ entre 0 y 1; la vertical representa densidad, no probabilidad puntual. Los valores precisos se presentan en la tabla.</p>
           <div class="table-scroll">
             <table class="comparison-table">
               <caption>Resultados de los experimentos revelados</caption>
@@ -109,7 +116,7 @@
       </div>
     </section>
     <section class="container section lab-section" id="laboratorio" aria-labelledby="lab-title">
-      <p class="eyebrow">Exploración libre · Versión 0.3.0</p>
+      <p class="eyebrow">Exploración libre · Actualización visual</p>
       <h2 id="lab-title">Experimenta con la actualización bayesiana</h2>
       <p class="section-intro">Modifica la priori y las observaciones. Observa cómo cambia tu estimación de θ y la incertidumbre que la acompaña.</p>
       <div class="lab-grid">
@@ -135,7 +142,8 @@
         <div class="chart-panel">
           <h3>De la priori a la posterior</h3>
           <p class="chart-help">Ambas densidades se muestran en un mismo sistema de ejes y con la misma escala vertical.</p>
-          <div id="main-chart" class="plot" role="img" aria-label="Gráfico dinámico de las densidades Beta a priori y a posteriori; consulta también la tabla de valores inferior."></div>
+          <div id="main-chart" class="plot" role="img" aria-describedby="main-chart-note" aria-label="Densidades Beta a priori y posterior en el mismo sistema de ejes."></div>
+          <p id="main-chart-note" class="chart-help">La curva a priori se representa discontinua y la posterior continua. El eje horizontal muestra θ de 0 a 1 y el vertical representa densidad. Los estadísticos aparecen debajo.</p>
           <div class="stats-grid" aria-label="Estadísticos del experimento">
             <div class="stat"><small>Distribución a priori</small><strong id="prior-params">Beta(2, 2)</strong><span>Media: <b id="prior-mean">0,5000</b></span><span>Desv. típica: <b id="prior-sd">0,2236</b></span></div>
             <div class="stat"><small>Distribución a posteriori</small><strong id="posterior-params">Beta(9, 5)</strong><span>Media: <b id="posterior-mean">0,6429</b></span><span>Desv. típica: <b id="posterior-sd">0,1237</b></span></div>
@@ -162,6 +170,19 @@
         </div>
         <p class="chart-help">Los gráficos se visualizan mediante Plotly.js, cargado desde un CDN. Necesitas conexión a Internet; los cálculos y las tablas no dependen de él.</p>
       </div>
+    </section>
+    <section id="infografia" class="container section visual-section" aria-labelledby="visual-title">
+      <p class="eyebrow">Resumen didáctico · Consultar después de predecir</p>
+      <h2 id="visual-title">El cambio que importa: estimación e incertidumbre</h2>
+      <p class="section-intro">Mismo 70 % de caras, distinto tamaño muestral. Las medias posteriores se aproximan a 0,7, pero la reducción de la desviación típica es especialmente significativa.</p>
+      <figure class="visual-figure">
+        <img src="./assets/infografia/mas-datos-menos-incertidumbre.svg" width="1100" height="550" loading="lazy" decoding="async" alt="Tres curvas Beta posteriores: n=10, media 0,6429 y desviación típica 0,1237; n=100, media 0,6923 y desviación típica 0,0450; n=1000, media 0,6992 y desviación típica 0,0145. Las curvas son cada vez más estrechas. La altura de cada curva está reescalada individualmente." />
+        <figcaption>Curvas Beta calculadas para cada posterior, con el mismo eje horizontal. La altura se normaliza en cada panel para comparar la concentración; <strong>no se deben comparar las alturas entre paneles</strong>. <a href="./assets/infografia/mas-datos-menos-incertidumbre.svg" download>Guardar infografía SVG</a>.</figcaption>
+      </figure>
+      <details class="concept-note">
+        <summary>¿Por qué un gráfico de densidad no muestra probabilidades puntuales?</summary>
+        <p>En una distribución continua, la altura de la curva es densidad, no la probabilidad de un valor exacto de θ. La probabilidad de un intervalo corresponde al área bajo la curva dentro de ese intervalo. Al acumular datos, la densidad se concentra sobre una región más estrecha.</p>
+      </details>
     </section>
     <section class="container section question" aria-labelledby="reto">
       <div><p class="eyebrow">El reto que investigaremos</p><h2 id="reto">10, 100 o 1000 lanzamientos</h2><p>En los tres experimentos observamos un 70 % de caras. ¿Serán iguales las distribuciones posteriores? ¿Qué cambia realmente al aumentar los datos?</p></div>

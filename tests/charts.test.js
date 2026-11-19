@@ -39,3 +39,12 @@ test('la ausencia de Plotly se informa de forma clara', async () => {
   delete globalThis.Plotly;
   assert.throws(() => renderPriorPosterior({}, {alpha:2,beta:2}, {alpha:9,beta:5}), /Plotly/);
 });
+
+test('las curvas de comparación se distinguen también por patrón de línea', async () => {
+  let traces;
+  globalThis.Plotly = { react: async (_, t) => { traces = t; } };
+  await renderComparison({}, referenceScenarios());
+  assert.deepEqual(traces.map(t => t.line.dash), ['dash', 'solid', 'dot']);
+  assert.ok(traces.every(t => t.line.width >= 2));
+  delete globalThis.Plotly;
+});

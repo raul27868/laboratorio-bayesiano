@@ -48,12 +48,15 @@ Modelo: una probabilidad desconocida θ, priori Beta(α,β), datos binomiales co
 - [x] Resultados autocorregidos al finalizar y ausencia de revelación prematura en la actividad guiada.
 
 
-**Estado:** revisada en v0.5.1 para ser totalmente autocorregible, pendiente de validación local. Se retiró la rúbrica docente.
+**Estado:** revisada en v0.5.1 para ser totalmente autocorregible, validada localmente por el usuario (10 de 10 comprobaciones). Se retiró la rúbrica docente.
 
 ### Fase 5 — v0.6.0: material y usabilidad
-- [ ] Infografía basada en datos matemáticos verificados.
-- [ ] Navegación y visualización responsiva.
-- [ ] Contraste, accesibilidad con teclado y alternativas textuales.
+- [x] Infografía basada en datos matemáticos verificados.
+- [x] Navegación y visualización responsiva.
+- [x] Contraste, accesibilidad con teclado y alternativas textuales.
+
+
+**Estado:** implementada. Pendiente de validación local manual de visualización, accesibilidad y respuesta móvil.
 
 ### Fase 6 — v1.0.0: publicación
 - [ ] GitHub Pages habilitado.

@@ -1,7 +1,7 @@
 import { betaPdf } from './bayes.js';
 
 export const CHARTS_READY = true;
-const COLORS = { prior: '#d97706', posterior: '#2563eb', first: '#d97706', second: '#0f766e', third: '#7c3aed' };
+const COLORS = { prior: '#b65b00', posterior: '#175ca3', first: '#b65b00', second: '#087e83', third: '#6542a8' };
 const X = Array.from({ length: 501 }, (_, i) => i / 500);
 
 function series(alpha, beta) {
@@ -25,11 +25,11 @@ function trace(name, alpha, beta, color, dash = 'solid') {
 const commonLayout = {
   paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
   font: { family: 'system-ui, sans-serif', color: '#21364c', size: 12 },
-  margin: { l: 57, r: 20, t: 22, b: 59 },
+  margin: { l: 64, r: 20, t: 22, b: 74 },
   hovermode: 'x unified', showlegend: true,
-  legend: { orientation: 'h', y: -0.28, x: 0 },
-  xaxis: { title: 'Probabilidad θ', range: [0, 1], tickformat: '.1f', gridcolor: '#e4eaf1', zeroline: false },
-  yaxis: { title: 'Densidad', rangemode: 'tozero', gridcolor: '#e4eaf1', zeroline: false }
+  legend: { orientation: 'h', y: -0.34, x: 0, font: { size: 12 } },
+  xaxis: { title: 'Probabilidad θ (0 a 1)', range: [0, 1], tickformat: '.1f', gridcolor: '#e4eaf1', zeroline: false },
+  yaxis: { title: 'Densidad (no probabilidad puntual)', rangemode: 'tozero', gridcolor: '#e4eaf1', zeroline: false }
 };
 
 function draw(el, traces) {
@@ -59,7 +59,8 @@ export function renderComparison(el, scenarios, enabled = [true, true, true]) {
     .map((item, index) => {
       // Color estable de acuerdo con n, aunque se oculten otros escenarios.
       const color = item.n === 10 ? COLORS.first : item.n === 100 ? COLORS.second : COLORS.third;
-      return trace('n=' + item.n, item.posterior.alpha, item.posterior.beta, color);
+      const dash = item.n === 10 ? 'dash' : item.n === 100 ? 'solid' : 'dot';
+      return trace('n=' + item.n, item.posterior.alpha, item.posterior.beta, color, dash);
     });
   if (!traces.length) {
     el.replaceChildren();

@@ -55,3 +55,11 @@ Documentar los prompts concretos de implementación y las correcciones que surja
 **Cambios técnicos:** retirar los campos libres y la vista de profesor, adaptar la máquina de estados, el motor de evaluación y la exportación. Nuevo esquema JSON y clave local v2, porque el antiguo formato contenía textos y valoraciones docentes. Mantener los gráficos y la exploración libre sin cambios.
 
 **Comprobación:** pruebas para claves y distractores, puntos, secuencia, obligatoriedad, exportación y rechazo del formato v1; validación visual y de almacenamiento pendiente de revisión local.
+
+## Fase 5 — diseño visual y material didáctico
+
+**Encargo:** consolidar el diseño visual, integrar un resumen gráfico didáctico matemáticamente preciso y reforzar navegación, legibilidad de curvas y accesibilidad sin modificar el motor Beta-Binomial ni la evaluación autocorregible.
+
+**Decisiones:** crear un SVG vectorial local, editable, con curvas calculadas a partir de las posteriores Beta(9,5), Beta(72,32) y Beta(702,302); rotular sus medias y desviaciones típicas; normalizar las alturas solo en el resumen estático y advertir que no deben compararse. En los gráficos interactivos se preserva la escala vertical común por panel y se distinguen trazos con patrones además del color.
+
+**Pruebas:** comprobar metadatos accesibles y valores de la infografía, estructura HTML, versiones, trazos diferenciados; ejecutar batería previa y validar en Firefox la interacción real y la respuesta en móvil.

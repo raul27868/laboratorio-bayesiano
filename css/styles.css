@@ -71,3 +71,42 @@
 .feedback-item{margin:14px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:#fff}
 .feedback-item h4{margin:0 0 9px}
 .feedback-item p{margin:8px 0}
+
+/* Fase 5: identidad visual, jerarquía, accesibilidad y móvil */
+:root{--focus:#a76207;--shadow:0 12px 32px rgba(18,36,58,.065)}
+html{scroll-padding-top:22px}
+body{background:linear-gradient(180deg,#f8fbfd 0,#fff 540px)}
+.site-header{position:relative;z-index:2}
+.header-inner{gap:18px}
+.header-nav{display:flex;align-items:center;justify-content:center;gap:clamp(10px,2vw,26px);flex-wrap:wrap}
+.header-nav a{font-size:.88rem;font-weight:650;text-decoration:none;color:var(--ink);padding:7px 5px;border-bottom:2px solid transparent}
+.header-nav a:hover{border-bottom-color:var(--teal)}
+.hero{padding-bottom:20px}
+.hero .lead{max-width:700px}
+.status-dot{background:#087e83}
+.quick-links{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:42px}
+.quick-links a{display:inline-flex;align-items:center;min-height:44px;border:1px solid var(--teal);border-radius:11px;padding:11px 18px;font-weight:700;text-decoration:none}
+.quick-primary{background:var(--teal);color:#fff}
+.quick-secondary{background:#fff;color:var(--teal)}
+.step,.mode,.chart-panel,.comparison-section,.guided-card,.visual-figure{box-shadow:var(--shadow)}
+.step{border-top:3px solid var(--teal)}
+.mode{border-top:3px solid #2563a6}
+.step h3,.mode h3{letter-spacing:-.01em}
+.mode-action,.guided-button,.reset-button{min-height:44px}
+.guided-card{background:#f8fafc}
+.guided-options label:has(input:checked){background:#e7f4f2;border-color:#087e83}
+.guided-options label:hover{border-color:#728ea5}
+:is(a,button,input,select,textarea,summary):focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+#main-chart,#comparison-chart,#guided-chart{max-width:100%}
+#guided-chart-note,#comparison-chart-note,#main-chart-note{margin:8px 0 19px;line-height:1.55}
+.visual-section{scroll-margin-top:20px}
+.visual-figure{margin:0;border:1px solid var(--line);background:#fff;border-radius:17px;padding:clamp(14px,3vw,28px)}
+.visual-figure img{display:block;width:100%;height:auto;aspect-ratio:2 / 1;object-fit:contain}
+.visual-figure figcaption{font-size:.93rem;line-height:1.6;color:var(--muted);margin-top:16px}
+.concept-note{border:1px solid var(--line);background:#f4f7fb;border-radius:12px;margin-top:16px;padding:16px}
+.concept-note summary{font-weight:700;cursor:pointer}
+.concept-note p{margin-bottom:0}
+@media(max-width:760px){.header-inner{padding-block:10px;flex-wrap:wrap}.header-nav{order:3;width:100%;justify-content:flex-start;gap:15px}.hero{padding-top:48px}.quick-links{margin-bottom:20px}.visual-figure img{aspect-ratio:auto}}
+@media(max-width:480px){.quick-links a{width:100%;justify-content:center}.header-nav{gap:7px 16px}.header-nav a{font-size:.82rem}.guided-topbar{align-items:flex-start}.plot{min-height:270px;height:305px}.visual-figure{padding:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media(prefers-contrast:more){:root{--muted:#2f4254;--line:#718498}.step,.mode,.guided-card,.chart-panel,.comparison-section{border-color:#576c80}.quick-links a,.guided-button{border-width:2px}}

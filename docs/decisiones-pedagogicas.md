@@ -56,3 +56,16 @@ Validar toda fórmula y representación. No presentar predicciones o soluciones 
 ## Limitaciones
 
 La autocorrección mide las decisiones que el estudiante toma ante situaciones de interpretación, no sustituye por completo la evaluación de un razonamiento escrito. La aplicación es pública y no está diseñada para exámenes sumativos supervisados.
+
+## Diseño visual y fidelidad de los gráficos — Fase 5
+
+El objetivo es que el estudiante distinga dos cambios distintos:
+
+- El desplazamiento de la media posterior desde 0,5 hacia la proporción observada 0,7.
+- La disminución de la incertidumbre, visible en la reducción de la desviación típica y el estrechamiento de la distribución.
+
+Los **gráficos interactivos** muestran las curvas de cada panel con una escala vertical común. La **infografía estática** hace lo contrario a propósito: normaliza la altura de cada curva dentro de su panel para destacar el cambio en anchura, y señala expresamente que no se deben comparar alturas entre paneles. El eje horizontal es común de 0 a 1.
+
+La infografía incorpora valores de referencia exactos redondeados a cuatro decimales, calculados mediante el motor Beta-Binomial. Las distinciones entre curvas no dependen exclusivamente del color: se utilizan patrones de trazo y leyendas en los gráficos. Se mantienen los estadísticos y tablas como alternativa numérica accesible.
+
+El resumen visual se encuentra **después** de la actividad guiada y de la exploración libre. Se advierte que debe consultarse después de realizar una predicción, ya que anticipa el resultado de los experimentos.

@@ -6,7 +6,7 @@ Aplicación educativa interactiva para explorar la inferencia bayesiana, con esp
 
 ## Estado del proyecto
 
-**v0.5.1 — Fase 4 revisada: actividad completamente autocorregible.** Predicción previa, tres experimentos, seis preguntas cerradas (10 puntos), feedback diferido y exportación/guardado local. Pendiente de validación local de la nueva versión.
+**v0.6.0 — Fase 5: diseño visual y accesibilidad.** Infografía SVG basada en las posteriores verificadas, estilos y navegación renovados, gráficos con trazos diferenciables y explicaciones textuales. Pendiente de validación local de la interfaz y las visualizaciones.
 
 ## Objetivos de aprendizaje
 
@@ -64,7 +64,7 @@ tests/laboratory.test.js
 tests/charts.test.js
 tests/activity.test.js
 tests/assessment.test.js
-assets/infografia/.gitkeep
+assets/infografia/mas-datos-menos-incertidumbre.svg
 docs/proyecto.md
 docs/decisiones-pedagogicas.md
 docs/prompts-ia.md
@@ -155,3 +155,34 @@ Abre http://localhost:8000 y comprueba:
 10. Guardar en navegador, recuperar y borrar registro funcionan; la exploración libre no cambia.
 
 **Nota:** esta autocorrección funciona como herramienta formativa. En un sitio estático público, las respuestas correctas están incluidas en el código y no constituyen un sistema de examen seguro.
+
+## Mejoras de la Fase 5 (v0.6.0)
+
+- Infografía descargable y editable en formato SVG, con las tres posteriores, medias y desviaciones típicas matemáticamente verificadas.
+- Aviso didáctico: las curvas de la infografía se **reescalan verticalmente por separado** para facilitar la comparación de anchuras; **no** se deben comparar sus alturas. Los gráficos interactivos continúan utilizando una escala vertical común entre curvas de cada gráfico.
+- Mayor jerarquía visual, botones de acceso directo, navegación de secciones y estilos responsivos.
+- Diferenciación de curvas mediante color **y patrón de línea**, más explicaciones textuales de ejes y tablas accesibles.
+- Estilos de foco visible, respeto a `prefers-reduced-motion` y ajustes de contraste.
+
+### Validación local de la Fase 5
+
+```bash
+git pull origin main
+npm test
+python3 -m http.server 8000
+```
+
+En Firefox, comprueba que:
+
+1. La portada ofrece accesos directos y navegación a actividad, exploración y resumen visual.
+2. La infografía SVG se muestra completa, sin cortes, y se puede descargar.
+3. La infografía muestra las medias 0,6429 / 0,6923 / 0,6992 y desviaciones típicas 0,1237 / 0,0450 / 0,0145.
+4. Los gráficos de la exploración libre se dibujan correctamente, con líneas continuas/discontinuas y una leyenda legible.
+5. En pantalla estrecha no aparecen desbordamientos horizontales ni controles ocultos.
+6. La navegación mediante Tab tiene foco visible y los controles de los formularios son accesibles con teclado.
+7. El acordeón explicativo de densidad se abre y se cierra correctamente.
+8. El cuestionario de seis preguntas sigue autocorrigiéndose a 10 puntos y se conservan exportación, guardado y reinicio.
+9. Activar la preferencia de movimiento reducido del sistema evita desplazamientos animados.
+10. Las tablas y descripciones textuales permiten interpretar los resultados sin distinguir los colores.
+
+El recurso gráfico se incluye localmente, sin depender de otros servicios. Los gráficos interactivos continúan cargando Plotly desde su CDN.
